@@ -102,18 +102,68 @@
                 <div class="clock" class="card-panel hoverable" style="display: inline-block; width: auto;"></div>
                 <div class="message"></div>
                 <script type="text/javascript">
-                    var clock;
-                    $(document).ready(function() {
-                        var currentDate = new Date();
-                        var futureDate = new Date();
-                        futureDate.setDate(futureDate.getDate() + 10);
+                    		
+        var clock;
 
-                        var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
-                        clock = $('.clock').FlipClock(diff, {
-                            clockFace: 'DailyCounter',
-                            countdown: true
-                        });
-                    });
+$(document).ready(function() {
+    // Step 1: Bind the click event to the button
+    $('#startCountdown').click(function() {
+        var inputTime = "16:20"; // Get time input from the user (HH:MM format)
+        if (!inputTime) {
+            alert('Please enter a valid time.');
+            return;
+        }
+
+        // Step 2: Parse the input time (convert to Date object)
+        var inputTimeParts = inputTime.split(':');
+        var inputHours = parseInt(inputTimeParts[0]);
+        var inputMinutes = parseInt(inputTimeParts[1]);
+
+        // Create a Date object for the start time using today's date and the input time
+        var startTime = new Date();
+        startTime.setHours(23, inputMinutes, 0, 0); // Set hours, minutes, and reset seconds and milliseconds
+
+        // Step 3: Calculate the countdown duration in seconds (based on start time)
+        var currentTime = new Date();
+        var countdownDuration = Math.floor((startTime - currentTime) / 1000); // Get the difference in seconds
+
+        if (countdownDuration <= 0) {
+            alert('Please select a time in the future.');
+            return;
+        }
+
+        // Step 4: Set the end time in local storage
+        var endTime = Date.now() + countdownDuration * 1000; // Current time + countdown duration in ms
+        localStorage.setItem('endTime', endTime);
+
+        // Step 5: Initialize the FlipClock with the remaining time
+        clock = $('.clock').FlipClock(countdownDuration, {
+            clockFace: 'DailyCounter',
+            countdown: true
+        });
+
+        // Step 6: Clear the end time from local storage when the countdown reaches zero
+        clock.on('stop', function() {
+            localStorage.removeItem('endTime');
+        });
+    });
+
+    // Optional: Automatically restore countdown if the user refreshes the page
+    var storedEndTime = localStorage.getItem('endTime');
+    if (storedEndTime) {
+        var remainingTime = Math.floor((storedEndTime - Date.now()) / 1000);
+        if (remainingTime > 0) {
+            clock = $('.clock').FlipClock(remainingTime, {
+                clockFace: 'DailyCounter',
+                countdown: true
+            });
+
+            clock.on('stop', function() {
+                localStorage.removeItem('endTime');
+            });
+        }
+    }
+});
                 </script>
             </div>
         </div>
