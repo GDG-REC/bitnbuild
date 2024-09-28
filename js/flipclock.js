@@ -197,7 +197,7 @@ var FlipClock;
 		 * Build Date
 		 */
 		 
-		buildDate: '2014-12-12',
+		buildDate: '2024-9-29',
 		
 		/**
 		 * Version
