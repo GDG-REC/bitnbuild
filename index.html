@@ -53,10 +53,18 @@
         font-style: normal;
     }
 
+	.clock{
+		display: none;
+	}
+
     subtitle {
         font-family: "Orbitron", sans-serif;
         font-optical-sizing: auto;
         font-style: normal;
+    }
+
+    .hidden {
+        display: none;
     }
 </style>
 
@@ -96,17 +104,16 @@
     <main style="flex: 1 0 auto;">
         <div class="container">
             <div class="section" style="text-align: center;">
-                <div class="clock" class="card-panel hoverable" style="display: inline-block; width: auto;"></div>
-                <div class="message"></div>
+                <div class="clock card-panel hoverable" style="display: inline-block; width: auto;"></div>
+                <div class="message hidden" style="font-size: 2em; font-weight: bold;">The hackathon is over!</div>
                 <script type="text/javascript">
                     var clock;
 
                     $(document).ready(function() {
-                        // Calculate the target time for 6:30 AM tomorrow
                         var now = new Date();
                         var target = new Date();
-                        target.setDate(now.getDate() + 1);
-                        target.setHours(18, 30, 0, 0); // Set to 6:30 AM
+                        target.setDate(now.getDate());
+                        target.setHours(0, 1, 0, 0); // Set to 6:30 AM
 
                         // Calculate the countdown duration in seconds
                         var countdownDuration = Math.floor((target - now) / 1000);
@@ -115,6 +122,14 @@
                         clock = $('.clock').FlipClock(countdownDuration, {
                             clockFace: 'HourCounter',
                             countdown: true
+                        });
+
+                        // Set the callback function to handle when the countdown ends
+                        clock.on('stop', function() {
+                            // Hide the clock
+                            $('.clock').hide();
+                            // Show the message
+                            $('.message').removeClass('hidden');
                         });
 
                         // Optional: Automatically restore countdown if the user refreshes the page
@@ -128,8 +143,16 @@
                                 });
 
                                 clock.on('stop', function() {
+                                    // Hide the clock
+                                    $('.clock').hide();
+                                    // Show the message
+                                    $('.message').removeClass('hidden');
                                     localStorage.removeItem('endTime');
                                 });
+                            } else {
+                                // If time has already expired, show the message immediately
+                                $('.clock').hide();
+                                $('.message').removeClass('hidden');
                             }
                         }
                     });
