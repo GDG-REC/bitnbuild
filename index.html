@@ -4,6 +4,7 @@
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 	<link rel="stylesheet" href="css/flipclock.css">
+	<link href="basic.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
@@ -15,15 +16,34 @@
 	<title>Bit-N-Build</title>
 </head>
 <style>
-	   body {
-        
-			 background-image: url('https://cdn.discordapp.com/attachments/1289264675162161152/1289572897534513162/background.png?ex=66f94fd9&is=66f7fe59&hm=972b69acb1f97b7c0828db01a44dde003441f79c5d76528566014b06076ca914&');
-             background-repeat: none;
+	@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 
-        }
+	body {
+		background-image: url('https://cdn.discordapp.com/attachments/1289264675162161152/1289572897534513162/background.png?ex=66f94fd9&is=66f7fe59&hm=972b69acb1f97b7c0828db01a44dde003441f79c5d76528566014b06076ca914&');
+		background-repeat: no-repeat;
+		background-size: cover;
+		font-family: 'Libre Franklin', sans-serif;
+		color: white;
+	}
+
+	.rec img {
+		width: 10%;
+	}
+
+	h1 {
+		font-family: 'Orbitron', sans-serif;
+	}
+
+	h5 {
+		font-family: 'Libre Franklin', sans-serif;
+		font-weight: 300;
+	}
 </style>
 <body class="bg-black h-screen text-white text-center">
-	
+	<div class="rec">
+		<img src="recLogo.png">
+	</div>
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
 			<br><br>
@@ -35,35 +55,35 @@
 			<br><br>
 		</div>
 	</div>
+
 	<!-- Clock Start -->
 	<main style="flex: 1 0 auto;">
 		<div class="container">
 			<div class="section" style="text-align: center;">
-				<div class="clock"  class="card-panel hoverable" style="display: inline-block; width: auto;"></div>
+				<div class="clock" class="card-panel hoverable" style="display: inline-block; width: auto;"></div>
 				<div class="message"></div>
 				<script type="text/javascript">
 					var clock;
 					$(document).ready(function() {
 						var currentDate = new Date();
 
-        // futureDate should be the release date of your project.
-        // uncomment the line below and change the date to your release date
-        // var futureDate = new Date('October 6, 2018 09:00:00');
+						// Future date should be the release date of your project.
+						// var futureDate = new Date('October 6, 2018 09:00:00');
 
-        // These lines use a date exactly 10 days into the future. Remove them.
-        var futureDate = new Date();
-        futureDate.setDate(futureDate.getDate() + 10);
+						// Temporary: 10 days into the future
+						var futureDate = new Date();
+						futureDate.setDate(futureDate.getDate() + 10);
 
-        var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
-        clock = $('.clock').FlipClock(diff, {
-        	clockFace: 'DailyCounter',
-        	countdown: true
-        });
-    });
-</script>
-</div>
-</div>
-</main>
+						var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+						clock = $('.clock').FlipClock(diff, {
+							clockFace: 'DailyCounter',
+							countdown: true
+						});
+					});
+				</script>
+			</div>
+		</div>
+	</main>
 	<!-- Clock End -->
 
 </body>
