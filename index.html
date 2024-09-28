@@ -72,16 +72,35 @@
 				<div class="clock"  class="card-panel hoverable" style="display: inline-block; width: auto;"></div>
 				<div class="message"></div>
 				<script type="text/javascript">
-					var clock;
-					$(document).ready(function() {
-						var hours = 24 * 60 * 60; // 36 hours = 36 * 60 minutes * 60 seconds
+			var clock;
+$(document).ready(function() {
+    // Step 1: Define the countdown duration in seconds (36 hours)
+    var countdownDuration = 24 * 60 * 60; // 36 hours in seconds
+    
+    // Step 2: Check if there's an end time stored in local storage
+    var endTime = localStorage.getItem('endTime');
+    if (!endTime) {
+        // If not, set the end time for the countdown
+        endTime = Date.now() + countdownDuration * 1000; // Current time + countdown duration in ms
+        localStorage.setItem('endTime', endTime);
+    }
 
-// Step 2: Initialize the FlipClock with the 36 hours countdown
-var clock = $('.clock').FlipClock(hours, {
-    clockFace: 'DailyCounter', // Display format
-    countdown: true // Set to countdown mode
-});
+    // Step 3: Calculate the remaining time
+    var remainingTime = Math.floor((endTime - Date.now()) / 1000); // Convert to seconds
+    if (remainingTime < 0) remainingTime = 0; // Prevent negative time
+
+    // Step 4: Initialize the FlipClock with the remaining time
+    clock = $('.clock').FlipClock(remainingTime, {
+        clockFace: 'DailyCounter',
+        countdown: true
     });
+
+    // Step 5: Clear the end time from local storage when the countdown reaches zero
+    clock.on('stop', function() {
+        localStorage.removeItem('endTime');
+    });
+});
+
 </script>
 </div>
 </div>
