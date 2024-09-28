@@ -126,7 +126,6 @@ transform-origin: 50% 100%;
 top: 0; }
 
 .flip-clock-wrapper ul li a div.up:after {
-<<<<<<< HEAD
 content: "";
 position: absolute;
 top: 44px;
@@ -136,17 +135,6 @@ width: 100%;
 height: 3px;
 background-color: #000;
 background-color: rgba(0, 0, 0, 0.4); }
-=======
-  content: "";
-  position: absolute;
-  top: 44px;
-  left: 0;
-  z-index: 5;
-  width: 100%;
-  height: 3px;
-  background-color: #000;
-  background-color: rgba(0, 0, 0, 0.4); }
->>>>>>> 5402d613ebfe48afae56514def6033872dca63b1
 
 .flip-clock-wrapper ul li a div.down {
 -webkit-transform-origin: 50% 0;
@@ -211,7 +199,6 @@ box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 left: 5px; }
 
 .flip-clock-divider .flip-clock-label {
-<<<<<<< HEAD
 /* Add any css for the 'Days Hours Minutes Seconds' text here */
 font-size: 16px;
 font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
@@ -220,16 +207,6 @@ top: -1.5em;
 right: -86px;
 color: rgb(255, 255, 255);
 text-shadow: none; }
-=======
-  /* Add any css for the 'Days Hours Minutes Seconds' text here */
-  font-size: 16px;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  position: absolute;
-  top: -1.5em;
-  right: -86px;
-  color: rgb(255, 255, 255);
-  text-shadow: none; }
->>>>>>> 5402d613ebfe48afae56514def6033872dca63b1
 
 .flip-clock-divider.minutes .flip-clock-label {
 right: -88px; }
