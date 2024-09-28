@@ -120,7 +120,6 @@
 	
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
-
 			<br><br>
 			<h1 class="mx-auto text-[50px] title" >Bit-N-Build</h1>
 			<div class="row center">
@@ -149,13 +148,21 @@
 				<script type="text/javascript">
 					var clock;
 					$(document).ready(function() {
-						var hours = 24 * 60 * 60; // 36 hours = 36 * 60 minutes * 60 seconds
+						var currentDate = new Date();
 
-// Step 2: Initialize the FlipClock with the 36 hours countdown
-var clock = $('.clock').FlipClock(hours, {
-    clockFace: 'DailyCounter', // Display format
-    countdown: true // Set to countdown mode
-});
+        // futureDate should be the release date of your project.
+        // uncomment the line below and change the date to your release date
+        // var futureDate = new Date('October 6, 2018 09:00:00');
+
+        // These lines use a date exactly 10 days into the future. Remove them.
+        var futureDate = new Date();
+        futureDate.setDate(futureDate.getDate() + 10);
+
+        var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+        clock = $('.clock').FlipClock(diff, {
+        	clockFace: 'DailyCounter',
+        	countdown: true
+        });
     });
 </script>
 </div>
